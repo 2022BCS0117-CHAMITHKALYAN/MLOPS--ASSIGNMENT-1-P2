@@ -117,19 +117,7 @@ docker run -p 8000:8000 churn-risk-service
 
 ---
 
-## Monitoring Setup
 
-### Start monitoring services
-
-cd monitoring  
-docker compose -f docker-compose.monitoring.yml up
-
-### Monitoring Tools
-
-| Tool       | Role                |
-|------------|---------------------|
-| Prometheus | Collects metrics    |
-| Grafana    | Displays dashboards |
 
 ---
 
