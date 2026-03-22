@@ -49,7 +49,7 @@ The goal is to show how a simple prediction service can evolve from a basic API 
 ## 1. DevOps Architecture
 
 <p align="center">
-  <img src="assets/devops-architecture.png" alt="DevOps Architecture Diagram" width="95%">
+  <img src="assets/devops.jpg" alt="DevOps Architecture Diagram" width="95%">
 </p>
 
 ### What this architecture shows
@@ -76,7 +76,7 @@ This architecture ensures that every code change can be tested, packaged, and de
 ## 2. ML-Ready Architecture
 
 <p align="center">
-  <img src="assets/ml-architecture.png" alt="ML Architecture Diagram" width="95%">
+  <img src="assets/ml.jpg" alt="ML Architecture Diagram" width="95%">
 </p>
 
 ### What changes when ML is introduced
@@ -104,7 +104,7 @@ Unlike simple backend logic, ML systems depend heavily on data quality and model
 ## 3. MLOps Production Architecture
 
 <p align="center">
-  <img src="assets/mlops-architecture.png" alt="MLOps Architecture Diagram" width="95%">
+  <img src="assets/mlops.jpg" alt="MLOps Architecture Diagram" width="95%">
 </p>
 
 ### Purpose
