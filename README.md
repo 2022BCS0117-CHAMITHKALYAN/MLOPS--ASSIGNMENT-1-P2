@@ -6,10 +6,6 @@
 
 ---
 
-<p align="center">
-  <img src="assets/banner.png" alt="Project Banner" width="100%">
-</p>
-
 ## Overview
 
 This project presents a **Churn Risk Intelligence Service** designed as a production-style system that combines:
@@ -56,7 +52,7 @@ The goal is to show how a simple prediction service can evolve from a basic API 
 
 The DevOps setup focuses on delivering the service reliably from source code to deployment.
 
-**Flow:**
+**Flow:**  
 Source Code → CI Pipeline → Docker Image → Deployment → Monitoring
 
 ### Main components
@@ -192,5 +188,54 @@ The service uses customer and support-related inputs to estimate churn risk.
 ## API Endpoints
 
 ### Base URL
+
 ```bash
 http://localhost:8000
+
+
+| Endpoint        | Method | Purpose                       |
+| --------------- | ------ | ----------------------------- |
+| `/`             | GET    | Health check                  |
+| `/predict-risk` | POST   | Predict churn risk            |
+| `/metrics`      | GET    | Expose Prometheus metrics     |
+| `/docs`         | GET    | Interactive API documentation |
+
+
+```
+
+## Repository Structure
+project-root
+│
+├── src
+│   ├── app.py
+│   ├── rule_engine.py
+│   └── feature_pipeline.py
+│
+├── data
+│   ├── raw
+│   └── processed
+│
+├── scripts
+│   ├── prepare_customers.py
+│   ├── generate_tickets.py
+│   └── validate_tickets.py
+│
+├── tests
+│   ├── test_api.py
+│   └── test_rule_engine.py
+│
+├── monitoring
+│   ├── prometheus.yml
+│   └── docker-compose.monitoring.yml
+│
+├── grafana
+│   └── dashboard.json
+│
+├── assets
+│   ├── banner.png
+│   ├── devops.jpg
+│   ├── ml.jpg
+│   ├── mlops.jpg
+│   └── monitoring-dashboard.png
+│
+└── README.md
