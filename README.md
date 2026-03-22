@@ -1,46 +1,196 @@
-# [cite_start]MLOps Assignment Part 1 - Architecture Summaries [cite: 1]
+# Churn Risk Intelligence Service  
+### DevOps + MLOps Architecture Assignment
 
-[cite_start]**Author:** Bolli Chamith Kalyan (2022BCS0117) [cite: 2, 3]
+**Name:** B. Chamith Kalyan  
+**Roll No:** 2022BCS0117  
+
+---
+
+<p align="center">
+  <img src="assets/banner.png" alt="Project Banner" width="100%">
+</p>
 
 ## Overview
-[cite_start]This repository contains architecture diagrams and written explanations detailing the transition from a traditional rule-based DevOps system to a fully functioning MLOps pipeline[cite: 1, 40].
 
-## Architecture Evolution
+This project presents a **Churn Risk Intelligence Service** designed as a production-style system that combines:
 
-### [cite_start]1. DevOps Architecture (Rule-Based System) [cite: 4]
-* [cite_start]This architecture represents a simple backend system with no model training pipeline[cite: 16].
-* [cite_start]Churn risk is calculated entirely using predefined business rules and deterministic logic[cite: 16].
+- a **rule-driven backend** for churn risk estimation,
+- a **DevOps workflow** for build, test, deploy, and monitor,
+- and an **MLOps-ready design** for future model training and lifecycle management.
 
-### [cite_start]2. ML Architecture (Model Introduced) [cite: 17]
-* [cite_start]The rule-based engine is replaced with an ML inference system[cite: 31].
-* [cite_start]The updated architecture includes feature engineering and a training pipeline[cite: 32].
-* [cite_start]It utilizes a stored model artifact and evaluates performance using metrics like F1 score, ROC-AUC, and Precision-Recall[cite: 32].
+The goal is to show how a simple prediction service can evolve from a basic API into a reliable, scalable, and observable machine learning system.
 
-### [cite_start]3. MLOps Architecture (Production ML System) [cite: 33]
-* [cite_start]This final architecture adds model lifecycle control and dataset version tracking[cite: 35, 37].
-* [cite_start]It incorporates monitoring alongside automated retraining cycles[cite: 38].
-* [cite_start]The system is designed for ongoing performance evaluation[cite: 39].
+---
 
-## [cite_start]Key Concepts & Explanations [cite: 40]
+## Project Highlights
 
-### [cite_start]What broke when ML was added? [cite: 41]
-* [cite_start]**Before ML:** The system was predictable; the same input always produced the same output due to fixed rules[cite: 42, 43].
-* [cite_start]**After ML:** The system's output now heavily depends on the training data[cite: 44, 45].
-* [cite_start]Model behavior inherently changes after retraining, which makes reproducibility much harder[cite: 46, 47].
-* [cite_start]Debugging shifts its focus to analyzing data rather than just reviewing code[cite: 48].
-* [cite_start]ML introduces new risks like data drift, feature mismatch, model version confusion, and silent performance drops[cite: 49, 50, 51, 52, 53].
-* [cite_start]While DevOps manages code changes, ML introduces complex statistical behavior changes[cite: 54].
+- REST API for churn risk prediction
+- Rule-based decision logic for current inference
+- Clean DevOps delivery pipeline
+- Container-based deployment
+- Automated testing
+- Metrics collection and monitoring
+- MLOps-friendly architecture for future expansion
 
-### [cite_start]Why is DevOps alone insufficient? [cite: 55]
-* [cite_start]DevOps assumes that code strictly defines system behavior and that tests can verify correctness[cite: 56, 57, 58].
-* [cite_start]ML breaks this assumption because data influences behavior much more than code does[cite: 59, 60].
-* [cite_start]Model accuracy cannot be unit-tested like regular functions, and performance can decline over time even without any code changes[cite: 61].
-* [cite_start]DevOps mainly manages deployment, infrastructure, and API lifecycles[cite: 62, 63, 64, 65].
-* [cite_start]ML systems additionally require data lineage tracking, experiment tracking, model validation, and continuous monitoring and evaluation[cite: 66, 67, 68, 69, 70].
-* [cite_start]Without MLOps, teams deploy a model once but completely lose visibility into its real-world performance[cite: 71].
+---
 
-### [cite_start]What new risks does ML introduce? [cite: 72]
-* [cite_start]**Data Risks:** Systems are vulnerable to training data bias, distribution shifts, and noisy or incorrect labels[cite: 73, 74, 75, 76].
-* [cite_start]**Operational Risks:** Teams face issues like model drift without alerts, feature engineering mismatches, and non-reproducible training runs[cite: 77, 78, 79, 80].
-* [cite_start]**Business Risks:** There can be false positives in churn prediction, unstable decisions caused by overfitting, and hidden technical debt in ML pipelines[cite: 81, 82, 83, 84].
-* [cite_start]**The Key Shift:** Traditional backend failures are usually binary (either working or broken), whereas ML failures are gradual and often go unnoticed until performance metrics drop significantly[cite: 85, 86].
+## Architecture at a Glance
+
+| Layer | What It Does |
+|------|--------------|
+| Application Layer | Receives user requests and returns churn risk |
+| Decision Layer | Applies business rules to estimate risk |
+| DevOps Layer | Builds, tests, packages, and deploys the service |
+| Observability Layer | Tracks API health, latency, and usage |
+| MLOps Layer | Supports training, evaluation, and model lifecycle |
+
+---
+
+## 1. DevOps Architecture
+
+<p align="center">
+  <img src="assets/devops-architecture.png" alt="DevOps Architecture Diagram" width="95%">
+</p>
+
+### What this architecture shows
+
+The DevOps setup focuses on delivering the service reliably from source code to deployment.
+
+**Flow:**
+Source Code → CI Pipeline → Docker Image → Deployment → Monitoring
+
+### Main components
+
+- **Git repository** for source control
+- **CI pipeline** for automated build and testing
+- **Docker** for packaging the service
+- **Deployment stage** for running the application
+- **Monitoring tools** for system visibility
+
+### Why it matters
+
+This architecture ensures that every code change can be tested, packaged, and delivered in a repeatable way.
+
+---
+
+## 2. ML-Ready Architecture
+
+<p align="center">
+  <img src="assets/ml-architecture.png" alt="ML Architecture Diagram" width="95%">
+</p>
+
+### What changes when ML is introduced
+
+The rule engine can later be replaced or enhanced by a trained model.  
+At that stage, the system includes:
+
+- data collection
+- feature engineering
+- model training
+- model evaluation
+- model storage
+- inference API
+
+### ML pipeline flow
+
+Dataset → Data Cleaning → Feature Engineering → Training → Evaluation → Saved Model → Inference API
+
+### Key idea
+
+Unlike simple backend logic, ML systems depend heavily on data quality and model performance over time.
+
+---
+
+## 3. MLOps Production Architecture
+
+<p align="center">
+  <img src="assets/mlops-architecture.png" alt="MLOps Architecture Diagram" width="95%">
+</p>
+
+### Purpose
+
+This layer adds the operational discipline needed to run ML in real-world production environments.
+
+### Added capabilities
+
+- dataset versioning
+- experiment tracking
+- model registry
+- drift monitoring
+- automated retraining
+- continuous validation
+
+### Result
+
+The system does not just deploy a model once; it keeps checking whether the model is still accurate and useful.
+
+---
+
+## Why DevOps Alone Is Not Enough
+
+Traditional DevOps works very well for code-based applications, but ML systems behave differently.
+
+### DevOps assumes:
+- code is the main source of behavior
+- tests are enough to confirm correctness
+- output stays stable unless code changes
+
+### ML systems break that assumption because:
+- data changes affect predictions
+- retraining changes model behavior
+- accuracy can decline silently
+- bugs can come from data, not only code
+
+That is why **MLOps** is needed alongside DevOps.
+
+---
+
+## Risks Introduced by ML Systems
+
+### Data Risks
+- biased training samples
+- noisy labels
+- data drift
+- feature mismatch
+
+### Operational Risks
+- model version confusion
+- non-reproducible training runs
+- silent degradation in performance
+
+### Business Risks
+- wrong churn predictions
+- unstable decision-making
+- hidden technical debt in the pipeline
+
+---
+
+## Feature Design
+
+The service uses customer and support-related inputs to estimate churn risk.
+
+| Feature | Description |
+|--------|-------------|
+| `contract_type` | Customer plan type |
+| `ticket_count_30d` | Number of support tickets in the last 30 days |
+| `complaint_flag` | Indicates complaint history |
+| `negative_feedback_ratio` | Portion of negative interactions |
+| `usage_stability` | Measures consistency of service usage |
+
+---
+
+## Risk Classification Logic
+
+| Condition | Risk Level |
+|----------|------------|
+| Frequent complaints + short contract | High |
+| Moderate support activity | Medium |
+| Stable usage + long-term contract | Low |
+
+---
+
+## API Endpoints
+
+### Base URL
+```bash
+http://localhost:8000
