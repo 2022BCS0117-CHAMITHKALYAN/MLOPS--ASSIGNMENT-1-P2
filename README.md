@@ -83,42 +83,45 @@ http://localhost:8000
 
 ---
 
-## Repository Structure
-project-root
+# Repository Structure
+```
+
+MLOps-A01
 │
 ├── src
-│ ├── app.py
-│ ├── rule_engine.py
-│ └── feature_pipeline.py
+│   ├── app.py
+│   ├── rule_engine.py
+│   └── feature_pipeline.py
 │
 ├── data
-│ ├── raw
-│ └── processed
+│   ├── raw
+│   └── processed
 │
 ├── scripts
-│ ├── prepare_customers.py
-│ ├── generate_tickets.py
-│ └── validate_tickets.py
+│   ├── generate_tickets.py
+│   ├── prepare_customers.py
+│   └── validate_tickets.py
 │
 ├── tests
-│ ├── test_api.py
-│ └── test_rule_engine.py
+│   ├── test_api.py
+│   └── test_rule_engine.py
 │
 ├── monitoring
-│ ├── prometheus.yml
-│ └── docker-compose.monitoring.yml
+│   ├── prometheus.yml
+│   └── docker-compose.monitoring.yml
 │
 ├── grafana
-│ └── dashboard.json
+│   └── devops-dashboard.json
 │
-├── assets
-│ ├── banner.png
-│ ├── devops.jpg
-│ ├── ml.jpg
-│ ├── mlops.jpg
-│ └── monitoring-dashboard.png
+├── docs
+│   └── API.md
 │
+├── Dockerfile
+├── requirements.txt
 └── README.md
+
+````
+
 
 
 
