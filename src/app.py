@@ -5,15 +5,7 @@ from datetime import datetime, timedelta
 from src.rule_engine import evaluate_risk
 
 
-# -----------------------------
-# Logging configuration
-# -----------------------------
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s | %(levelname)s | %(name)s | %(message)s"
-)
 
-logger = logging.getLogger("churn-risk-service")
 
 app = FastAPI(
     title="Churn Risk Prediction Service",
