@@ -3,4 +3,4 @@ uvicorn
 pandas
 pydantic
 pytest
-http
+httpx
