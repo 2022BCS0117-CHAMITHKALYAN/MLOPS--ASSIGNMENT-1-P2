@@ -155,8 +155,6 @@ pytest
 | Language       | Python         |
 | Containers     | Docker         |
 | CI/CD          | GitHub Actions |
-| Monitoring     | Prometheus     |
-| Visualization  | Grafana        |
 | Testing        | Pytest         |
 
 ---
