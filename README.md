@@ -20,13 +20,13 @@ The goal is to show how a simple prediction service can evolve from a basic API 
 
 ## Project Highlights
 
-- REST API for churn risk prediction
-- Rule-based decision logic for current inference
-- Clean DevOps delivery pipeline
-- Container-based deployment
-- Automated testing
-- Metrics collection and monitoring
-- MLOps-friendly architecture for future expansion
+- REST API for churn risk prediction  
+- Rule-based decision logic for current inference  
+- Clean DevOps delivery pipeline  
+- Container-based deployment  
+- Automated testing  
+- Metrics collection and monitoring  
+- MLOps-friendly architecture for future expansion  
 
 ---
 
@@ -48,25 +48,6 @@ The goal is to show how a simple prediction service can evolve from a basic API 
   <img src="assets/devops.jpg" alt="DevOps Architecture Diagram" width="95%">
 </p>
 
-### What this architecture shows
-
-The DevOps setup focuses on delivering the service reliably from source code to deployment.
-
-**Flow:**  
-Source Code → CI Pipeline → Docker Image → Deployment → Monitoring
-
-### Main components
-
-- **Git repository** for source control
-- **CI pipeline** for automated build and testing
-- **Docker** for packaging the service
-- **Deployment stage** for running the application
-- **Monitoring tools** for system visibility
-
-### Why it matters
-
-This architecture ensures that every code change can be tested, packaged, and delivered in a repeatable way.
-
 ---
 
 ## 2. ML-Ready Architecture
@@ -74,26 +55,6 @@ This architecture ensures that every code change can be tested, packaged, and de
 <p align="center">
   <img src="assets/ml.jpg" alt="ML Architecture Diagram" width="95%">
 </p>
-
-### What changes when ML is introduced
-
-The rule engine can later be replaced or enhanced by a trained model.  
-At that stage, the system includes:
-
-- data collection
-- feature engineering
-- model training
-- model evaluation
-- model storage
-- inference API
-
-### ML pipeline flow
-
-Dataset → Data Cleaning → Feature Engineering → Training → Evaluation → Saved Model → Inference API
-
-### Key idea
-
-Unlike simple backend logic, ML systems depend heavily on data quality and model performance over time.
 
 ---
 
@@ -103,139 +64,157 @@ Unlike simple backend logic, ML systems depend heavily on data quality and model
   <img src="assets/mlops.jpg" alt="MLOps Architecture Diagram" width="95%">
 </p>
 
-### Purpose
-
-This layer adds the operational discipline needed to run ML in real-world production environments.
-
-### Added capabilities
-
-- dataset versioning
-- experiment tracking
-- model registry
-- drift monitoring
-- automated retraining
-- continuous validation
-
-### Result
-
-The system does not just deploy a model once; it keeps checking whether the model is still accurate and useful.
-
----
-
-## Why DevOps Alone Is Not Enough
-
-Traditional DevOps works very well for code-based applications, but ML systems behave differently.
-
-### DevOps assumes:
-- code is the main source of behavior
-- tests are enough to confirm correctness
-- output stays stable unless code changes
-
-### ML systems break that assumption because:
-- data changes affect predictions
-- retraining changes model behavior
-- accuracy can decline silently
-- bugs can come from data, not only code
-
-That is why **MLOps** is needed alongside DevOps.
-
----
-
-## Risks Introduced by ML Systems
-
-### Data Risks
-- biased training samples
-- noisy labels
-- data drift
-- feature mismatch
-
-### Operational Risks
-- model version confusion
-- non-reproducible training runs
-- silent degradation in performance
-
-### Business Risks
-- wrong churn predictions
-- unstable decision-making
-- hidden technical debt in the pipeline
-
----
-
-## Feature Design
-
-The service uses customer and support-related inputs to estimate churn risk.
-
-| Feature | Description |
-|--------|-------------|
-| `contract_type` | Customer plan type |
-| `ticket_count_30d` | Number of support tickets in the last 30 days |
-| `complaint_flag` | Indicates complaint history |
-| `negative_feedback_ratio` | Portion of negative interactions |
-| `usage_stability` | Measures consistency of service usage |
-
----
-
-## Risk Classification Logic
-
-| Condition | Risk Level |
-|----------|------------|
-| Frequent complaints + short contract | High |
-| Moderate support activity | Medium |
-| Stable usage + long-term contract | Low |
-
 ---
 
 ## API Endpoints
 
 ### Base URL
 
-```bash
 http://localhost:8000
 
+### Available Routes
 
 | Endpoint        | Method | Purpose                       |
-| --------------- | ------ | ----------------------------- |
-| `/`             | GET    | Health check                  |
-| `/predict-risk` | POST   | Predict churn risk            |
-| `/metrics`      | GET    | Expose Prometheus metrics     |
-| `/docs`         | GET    | Interactive API documentation |
+|----------------|--------|------------------------------|
+| /              | GET    | Health check                 |
+| /predict-risk  | POST   | Predict churn risk           |
+| /metrics       | GET    | Expose Prometheus metrics    |
+| /docs          | GET    | Interactive API documentation|
 
-
-```
+---
 
 ## Repository Structure
 project-root
 │
 ├── src
-│   ├── app.py
-│   ├── rule_engine.py
-│   └── feature_pipeline.py
+│ ├── app.py
+│ ├── rule_engine.py
+│ └── feature_pipeline.py
 │
 ├── data
-│   ├── raw
-│   └── processed
+│ ├── raw
+│ └── processed
 │
 ├── scripts
-│   ├── prepare_customers.py
-│   ├── generate_tickets.py
-│   └── validate_tickets.py
+│ ├── prepare_customers.py
+│ ├── generate_tickets.py
+│ └── validate_tickets.py
 │
 ├── tests
-│   ├── test_api.py
-│   └── test_rule_engine.py
+│ ├── test_api.py
+│ └── test_rule_engine.py
 │
 ├── monitoring
-│   ├── prometheus.yml
-│   └── docker-compose.monitoring.yml
+│ ├── prometheus.yml
+│ └── docker-compose.monitoring.yml
 │
 ├── grafana
-│   └── dashboard.json
+│ └── dashboard.json
 │
 ├── assets
-│   ├── banner.png
-│   ├── devops.jpg
-│   ├── ml.jpg
-│   ├── mlops.jpg
-│   └── monitoring-dashboard.png
+│ ├── banner.png
+│ ├── devops.jpg
+│ ├── ml.jpg
+│ ├── mlops.jpg
+│ └── monitoring-dashboard.png
 │
 └── README.md
+
+
+
+---
+
+## Setup Instructions
+
+### 1. Clone the repository
+
+git clone <your-repository-link>  
+cd <project-folder>
+
+### 2. Install dependencies
+
+pip install -r requirements.txt
+
+### 3. Run the API
+
+uvicorn src.app:app --host 0.0.0.0 --port 8000
+
+---
+
+## Docker Execution
+
+### Build the image
+
+docker build -t churn-risk-service .
+
+### Run the container
+
+docker run -p 8000:8000 churn-risk-service
+
+---
+
+## Monitoring Setup
+
+### Start monitoring services
+
+cd monitoring  
+docker compose -f docker-compose.monitoring.yml up
+
+### Monitoring Tools
+
+| Tool       | Role                |
+|------------|---------------------|
+| Prometheus | Collects metrics    |
+| Grafana    | Displays dashboards |
+
+---
+
+## Testing
+
+Run the test suite with:
+
+pytest
+
+### Test Coverage Includes
+
+- API response validation  
+- rule engine verification  
+- prediction logic checks  
+
+---
+
+## Technologies Used
+
+| Category       | Tools           |
+|----------------|----------------|
+| Backend        | FastAPI        |
+| Language       | Python         |
+| Containers     | Docker         |
+| CI/CD          | GitHub Actions |
+| Monitoring     | Prometheus     |
+| Visualization  | Grafana        |
+| Testing        | Pytest         |
+
+---
+
+## Key Learnings
+
+- ML systems require more than deployment  
+- Data quality is as important as code quality  
+- Monitoring must continue after release  
+- MLOps helps make ML services reliable in production  
+
+---
+
+## Conclusion
+
+This project demonstrates the progression from a simple rule-based service to a production-aware ML system.  
+It shows how DevOps supports delivery, while MLOps ensures model reliability, traceability, and long-term performance.
+
+---
+
+## Acknowledgement
+
+Prepared by  
+B. Chamith Kalyan  
+2022BCS0117
